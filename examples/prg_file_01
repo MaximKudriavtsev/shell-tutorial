@@ -1,0 +1,61 @@
+#!/bin/bash
+file_name="Data_01"
+
+#while read t <$file_name # dont work!!!
+#do
+#  echo "[$t]"
+#done
+
+echo "Reading text file first time:"
+exec 10<$file_name
+while read t <&10
+do
+  echo "[$t]"
+done
+exec 10>&-
+
+echo "Reading text file second time:"
+cat $file_name|\
+while read t
+do
+  echo "[$t]"
+done
+
+echo "Reading text file third time:"
+while read t
+do
+  echo "[$t]"
+done <$file_name
+
+echo "Reading text file next time:"
+exec 10<$file_name
+while read t
+do
+  echo "[$t]"
+done <&10
+exec 10>&-
+
+#exit 0
+
+echo "Reading 3 lines of top text file:"
+head -n 3 $file_name|\
+while read t
+do
+  echo "[$t]"
+done
+
+echo "Reading 3 lines of bottom text file:"
+tail -n 3 $file_name|\
+while read t
+do
+  echo "[$t]"
+done
+
+echo "Reading text file without (my be) last (empty) line:"
+while read t
+do
+#  if ! [[ $t =~ . ]]; then break; fi
+  if  [[ $t =~ ^[[:blank:]]*$ ]]; then break; fi
+  echo "[$t]"
+done <$file_name
+

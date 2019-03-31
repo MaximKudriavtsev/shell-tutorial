@@ -1,0 +1,54 @@
+#!/bin/bash
+#declare -a A # indexed array!
+A=([0]=abc [1]=bcd [2]=cde)
+A=(abc1 bcd cde) # индексировать не обязательно
+A[0]=xyz1
+echo $A # -> A[0]
+echo ${A[1]}
+
+i=-1
+A[-1]=CDE # по спецификации bash (v>=4.2) отрицательные индексы отсчитываются с конца A[-1] - последний, Не работает при присваивании!
+A[${#A[@]}-1]=${A[-1]}CDE	# работает в выражении!
+echo ${A[-1]}			# работает при выводе!
+
+echo "All elements indexed array (1):"
+for((i=0;$i<3;i++));
+do
+  echo ${A[$i]}
+done
+
+exit 0
+
+echo "All elements indexed array (2):"
+for((i=0;$i<${#A[@]};i++));
+do
+  echo ${A[$i]}
+done
+
+echo "All elements indexed array (3):" ${A[*]}
+
+tab='	'
+nl='
+'
+IFS=",$tab$nl"  # 1-й символ= ',' не получилось использовать \n и \t
+IFS=$',\t\n' # вот он искомый вариант!!!
+echo "All elements indexed array (4):" "${A[*]}"
+echo "All elements indexed array (5):" ${A[*]}
+echo "All elements indexed array (6):" "${A[@]}"
+
+echo "All elements indexed array (7):"
+for t in ${A[@]}
+do
+  echo $t
+done
+
+echo "All elements indexed array (8):"
+IFS="$nl$tab$nl"  # с $nl цикл выполняется 3 раза!!
+IFS=$'\n\t\n'
+while read t
+do
+  echo $t
+done <<< "${A[*]}"
+
+echo "Length second element indexed array:" ${#A[1]}
+

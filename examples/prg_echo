@@ -1,0 +1,4 @@
+#!/bin/bash -v
+A="\"Hello\""
+echo $A
+echo $SHELL

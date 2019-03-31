@@ -1,0 +1,16 @@
+#!/bin/bash
+file_name="_data"
+
+#while read t <$file_name # dont work!!!
+#do
+#  echo "[$t]"
+#done
+
+echo "Reading text file first time:"
+exec 10<$file_name # open file for reading on file desriptor 10
+
+while read t <&10 # read lint
+do
+  echo "[$t]"
+done
+exec 10<&- # close file for reading on file desriptor 10

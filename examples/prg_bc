@@ -1,0 +1,19 @@
+#!/bin/bash
+# sum numbers from array
+declare -a A=(1 2 -3)
+
+IFS=$'+\t\n'
+echo ${A[*]}
+echo "${A[*]}"
+
+expr1="${A[*]}"
+expr2=`echo "$expr1"|bc`
+echo "$expr1"=$expr2
+
+# prod numbers from parameters
+set 2 -3 4
+IFS=$'*\t\n'
+expr1="$*"
+expr2=`echo "$expr1"|bc`
+echo "$expr1"=$expr2
+

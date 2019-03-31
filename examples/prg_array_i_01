@@ -1,0 +1,12 @@
+#!/bin/bash
+declare -a A	# indexed array!
+A=(1 2 3)	# индексировать не обязательно
+echo ${A[*]}
+IFS=$'+\t\n'
+echo "${A[*]}"
+
+expr1="${A[*]}"
+expr2=`echo "$expr1"|bc`
+echo $expr2
+
+

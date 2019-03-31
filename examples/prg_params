@@ -1,0 +1,45 @@
+#!/bin/bash
+echo IFS:
+echo -e "[$IFS]"
+IFS=" \t\n"
+echo -e "[$IFS]"
+echo "Parameters 1:" "$*"
+IFS="+\t\n"
+echo -e "[$IFS]"
+echo "Parameters 1a:" "$*"
+echo "Parameters 1b:" $*
+echo "Parameters 2:" $@
+echo "Number of parameters:" $#
+echo "Parameter two:" $2
+echo "Parameter twelve:" ${12}
+echo $((2+3)) #++
+
+echo "All parameters 3:"
+for t
+do
+  echo $t
+done
+
+echo "All parameters 4:"
+for t in $*
+do
+  echo $t
+done
+
+A=$*
+echo "Parameters to variable 5:" "\"$A\""
+
+IFS=" \t\n"
+set a b c
+echo "Changed parameters 6:" "$*"
+
+IFS=
+echo "Joined parameters 7:" "$*"
+
+args=("$@") # indexed array of parameters
+echo "All parameters 8:"
+for t in ${args[@]}
+do
+  echo $t
+done
+

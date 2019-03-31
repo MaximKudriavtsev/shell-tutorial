@@ -1,0 +1,33 @@
+#!/bin/bash
+declare t=6
+
+for((
+function fun1()
+{
+#  t=$(($t+1))
+  let t=$t+1
+  return 0
+}
+
+function fun2()
+{
+#  t=$(($t+$1))
+  let t=$t+$1
+  return 0
+}
+
+fun1 1 2&
+wait # не помогает!
+echo After fun1
+echo $t
+
+fun2 1
+echo After fun2 1
+echo $t
+
+fun2 2
+echo After fun2 2
+echo $t
+
+echo Parametr1=$1
+

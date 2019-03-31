@@ -1,0 +1,18 @@
+#!/bin/bash
+file_name="Data_01"
+
+declare -g x=0  # не помогает!
+
+echo $BASH_SUBSHELL # 0
+echo "Reading text file:"
+#cat $file_name|while read t
+cat $file_name|\
+while read t
+do
+  echo "[$t]"
+  echo $BASH_SUBSHELL # 1
+  ((x++))
+done
+echo $x
+echo "[$t]"
+

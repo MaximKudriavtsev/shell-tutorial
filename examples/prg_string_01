@@ -1,0 +1,43 @@
+#!/bin/bash
+s1="ab cd"
+s2="123"
+echo $s1$s2
+
+S=$s1$s2
+echo "String S=["$S"]"
+
+echo "Length of string S:" ${#S}
+
+echo "Left 4 characters of string S: ["${S:0:4}"]"
+
+echo "Beginning of string S without last 2 characters: ["${S:0:-2}"]"
+
+echo "Last 3 characters (right part) of string S: ["${S:5}"]"
+
+echo "Last 3 characters of string S: ["${S: -3}"]"
+
+echo "String S without one start and one last characters: ["${S:1:-1}"]"
+
+echo "Get middle 2 characters of string S: ["${S:3:-3}"]"
+
+echo "Delete char 'a' from start string S (prefix): ["${S#a}"]"
+echo "Delete any 3 char from start string S (prefix): ["${S#???}"]"
+
+echo "Delete suffix from string S: ["${S%??3}"]"
+
+S=$S"a"
+echo "New string S=["$S"]"
+echo "Replace 'cd' substring in string S: ["${S/cd/CD}"]"
+echo "Replace fist 'a' substring in string S: ["${S/a/A}"]"
+echo "Replace first 'a' substring in string S: ["${S/#a/A}"]" # # - first time
+pattern="%a" # % - last time
+echo "Replace last 'a' substring in string S: ["${S/$pattern/A}"]"
+pattern="/a" # / - all time
+echo "Replace all 'a' substring in string S: ["${S/$pattern/A}"]"
+
+echo "Delete 'cd' substring in string S: ["${S/cd}"]"
+
+echo "Delete all digits from string S: ["${S//[0-9]}"]"
+echo "Delete firs char 'a'-'c' from string S: ["${S/[a-c]}"]"
+
+

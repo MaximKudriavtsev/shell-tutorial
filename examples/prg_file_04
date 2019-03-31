@@ -1,0 +1,21 @@
+#!/bin/bash
+declare -a A
+
+function callback1()
+{
+  echo "["${A[@]}"]"
+  return 0
+} # callback1
+
+file_name="Data_02"
+
+echo "Reading text file:"
+readarray -C callback1 -c 1 A < $file_name
+
+echo "All elements indexed array:"
+for((i=0;$i<${#A[@]};i++));
+do
+  echo "["${A[$i]}"]"
+done
+
+

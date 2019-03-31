@@ -1,0 +1,17 @@
+#!/bin/bash
+N=4
+echo Variant One
+base="0000"	# (1)
+for((i=0;$i<$N;i++));
+do
+  s=$base$i
+  s=${s: -4}	# (2)
+  echo $s
+done
+
+echo Variant Two
+for((i=0;$i<$N;i++));
+do
+  s=`printf "%04d" $i` # кажется более тяжеловесным ... но лаконичнее -> нет (1) (2)
+  echo $s
+done

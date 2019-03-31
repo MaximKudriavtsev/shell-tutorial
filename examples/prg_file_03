@@ -1,0 +1,13 @@
+#!/bin/bash
+file_name="Data_02"
+
+x=0
+echo "Reading text file:"
+while read -ers t
+do
+  echo "[$t]"
+  #echo "[$READLINE_LINE]"
+  ((x++))
+done < $file_name
+echo $x
+

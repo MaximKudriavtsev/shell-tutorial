@@ -1,0 +1,35 @@
+#!/bin/bash
+echo "All parameters 1:"
+for t
+do
+  echo $t
+done
+
+echo "All parameters 2:"
+for t in $*
+do
+  echo $t
+done
+
+echo "List words:"
+for t in 1 2 3
+do
+  echo $t
+done
+
+echo "Empty list:"
+for t in
+do
+  echo $t
+done
+
+S=0
+echo "Sequence:"
+for t in $(seq 0.0 0.01 1.0)
+do
+  printf "t=%5.2f\n" $t
+  let S+=$t
+done
+printf "S=%5.2f\n" $S
+
+

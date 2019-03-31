@@ -1,0 +1,25 @@
+#!/bin/bash
+file_name="Data_01"
+
+$tab='	'
+echo "Reading 3 lines of top text file:"
+head -n 2 $file_name|\
+while read t
+do
+  echo "[$t]"
+#  if [[ "1" =~ 1(.*) ]]; then t1=Yes; else t1=No; fi
+#  echo $t1
+#  [[ '123*' =~ (1.)(3.) ]]
+#  [[ ' ' =~ [[:blank:]] ]]
+#  [[ '12' =~ [[:digit:]]+ ]]
+#  [[ 'asd(12)fg' =~ (\([[:digit:]]+\)) ]]
+#  [[ 'asd(12)fg' =~ ([[:digit:]]+) ]]
+#  [[ '' =~ . ]]
+  [[ "$tab 1 " =~ ^[[:blank:]]*$ ]]
+  echo $?
+  echo ${BASH_REMATCH[0]}
+  echo ${BASH_REMATCH[1]}
+  echo ${BASH_REMATCH[2]}
+done
+#  t1=$((R$t == R))
+

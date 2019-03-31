@@ -1,0 +1,35 @@
+#!/bin/bash
+declare -A B # associative array!
+B=([a]=abc [b]=bcd [c]=cde) # индексировать обязательно
+B[a]=xyz1
+echo $B # -> not exist
+echo ${B[a]}
+echo ${B[b]}
+
+echo "All elements associative array (1):"
+for t in ${B[@]}
+do
+  echo $t
+done
+
+echo "All elements associative array (2):"
+for t in ${B[*]}
+do
+  echo $t
+done
+
+echo "All elements associative array (3):"
+for i in a b c
+do
+  echo ${B[$i]}
+done
+
+echo "All elements associative array (4):" ${B[*]}
+IFS=",\t\n"
+echo "All elements associative array (5):" "${B[*]}"
+echo "All elements associative array (6):" ${B[*]}
+echo "All elements associative array (7):" "${B[@]}"
+
+echo "Number of elements of associative array:" ${#B[*]}
+echo "Length of second element associative array:" ${#B[b]}
+
